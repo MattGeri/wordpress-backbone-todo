@@ -40,3 +40,20 @@ function load_shortcode( $attributes ) {
 	</div>
 	<?php
 }
+
+add_action( 'init', 'setup_post_type' );
+
+function setup_post_type() {
+	register_post_type( 'todo', array(
+		'labels' => array(
+			'name' => __( 'Todo', 'todo' ),
+			'singular_name' =>  __( 'Todo', 'todo' ),
+		),
+		'show_ui' => true,
+		'has_archive' => false,
+		'supports' => array( 'title' ),
+		'show_in_rest' => true,
+		'rest_base' => 'todo',
+		'rest_controller_class' => 'WP_REST_Posts_Controller'
+	) );
+}
